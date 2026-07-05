@@ -1,4 +1,6 @@
 ﻿using System.Text.Json.Serialization;
+using Saku_Overclock.Shared.Ipc;
+using Saku_Overclock.Shared.Models;
 
 namespace Saku_Overclock.Shared;
 
@@ -101,9 +103,17 @@ public struct MemoryConfig
 }
 
 
-[JsonSourceGenerationOptions(WriteIndented = false)]
-[JsonSerializable(typeof(IpcRequest))]
-[JsonSerializable(typeof(IpcResponse))]
+[JsonSourceGenerationOptions(WriteIndented = false, IncludeFields = true)]
+[JsonSerializable(typeof(IpcMessage))]
+[JsonSerializable(typeof(AppSettings))]
+[JsonSerializable(typeof(Preset))]
+[JsonSerializable(typeof(Preset[]))]
+[JsonSerializable(typeof(PresetId))]
+[JsonSerializable(typeof(PresetUpdateMessage))]
+[JsonSerializable(typeof(ImportPresetsRequest))]
+[JsonSerializable(typeof(ExportPresetRequest))]
+[JsonSerializable(typeof(ExportPresetsRequest))]
+[JsonSerializable(typeof(ExportAllPresetsRequest))]
 [JsonSerializable(typeof(SmuCommandPayload))]
 [JsonSerializable(typeof(SmuCommandResult))]
 [JsonSerializable(typeof(MsrReadPayload))]
