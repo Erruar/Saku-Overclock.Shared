@@ -37,7 +37,6 @@ public class MsrWritePayload { public uint Msr { get; set; } public uint Eax { g
 public class CoreMaskPayload { public uint Core { get; set; } public uint Ccd { get; set; } public uint Ccx { get; set; } }
 public class SetCoperSingleCorePayload { public uint CoreMask { get; set; } public int Margin { get; set; } }
 
-// Переносим структуры данных ядра для шаринга между Клиентом и Сервисом
 public class SmuAddressSet
 {
     public uint MsgAddress { get; set; }
@@ -63,7 +62,7 @@ public enum CodenameGeneration : byte
     Unknown, Fp4, Fp5, Fp6, Ff3, Fp7, Fp8, Am4V1, Am4V2, Am5
 }
 
-public enum MemType : int
+public enum MemType
 {
     Unknown = -1, Ddr4, Ddr5, Lpddr5
 }
@@ -101,6 +100,8 @@ public struct MemoryConfig
     public int FrequencyFromTimings { get; set; }
     public MemoryTimings MemoryTimings { get; set; }
 }
+
+public record ApplyResult(string ParameterName, bool IsSuccess, string StatusCode);
 
 
 [JsonSourceGenerationOptions(WriteIndented = false, IncludeFields = true)]
