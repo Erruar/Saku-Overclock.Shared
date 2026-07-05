@@ -8,7 +8,7 @@ public class LocalThemeSettingsOptions
     public string AppBackgroundRequestedTheme
     {
         get;
-        init;
+        set;
     } = "Default";
 
     /// <summary>
@@ -17,6 +17,6 @@ public class LocalThemeSettingsOptions
     public List<ThemeClass> CustomThemes
     {
         get;
-        init;
+        set;
     } = [];
 }
