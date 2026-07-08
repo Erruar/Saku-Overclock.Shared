@@ -101,7 +101,22 @@ public struct MemoryConfig
     public MemoryTimings MemoryTimings { get; set; }
 }
 
-public record ApplyResult(string ParameterName, bool IsSuccess, string StatusCode);
+public enum SmuStatus : byte
+{
+    OK = 0x01,
+    FAILED = 0xFF,
+    UNKNOWN_CMD = 0xFE,
+    CMD_REJECTED_PREREQ = 0xFD,
+    CMD_REJECTED_BUSY = 0xFC,
+    TIMEOUT_MUTEX_LOCK = 0x30,
+    TIMEOUT_MAILBOX_READY = 0x31,
+    TIMEOUT_MAILBOX_MSG_WRITE = 0x32,
+    PCI_FAILED = 0x33,
+    CORE_UNAVAILABLE = 0x34, // Custom status, not Smu, when ZenStates-Core is unavailable
+    CORE_FAILED = 0x35 // Custom status, not Smu, when CpuService raise exception on some command
+}
+
+public record ApplyResult(string ParameterName, bool IsSuccess, SmuStatus SmuStatusCode);
 
 
 [JsonSourceGenerationOptions(WriteIndented = false, IncludeFields = true)]
