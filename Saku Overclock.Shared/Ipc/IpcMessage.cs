@@ -51,3 +51,27 @@ public class ExportAllPresetsRequest
     public string Folder { get; set; } = string.Empty;
     public string File { get; set; } = string.Empty;
 }
+
+public class HardwareInfoSnapshot
+{
+    public bool IsAvailable { get; set; }
+    public uint PhysicalCores { get; set; }
+    public uint[] CoreDisableMap { get; set; } = [];
+    public uint Cores { get; set; }
+    public string CpuName { get; set; } = string.Empty;
+    public bool Smt { get; set; }
+    public CommonMotherBoardInfo MotherBoardInfo { get; set; }
+    public bool Avx512AvailableByCodename { get; set; }
+    public string CpuCodeName { get; set; } = string.Empty;
+    public string SmuVersion { get; set; } = string.Empty;
+    public uint PowerTableVersion { get; set; }
+    public CodenameGeneration CodenameGeneration { get; set; }
+    public MemoryConfig MemoryConfig { get; set; } 
+    public bool PstateSupported { get; set; }
+}
+
+public class ApplyPresetRequest
+{
+    public Preset Preset { get; set; } = null!;
+    public bool SaveInfo { get; set; }
+}

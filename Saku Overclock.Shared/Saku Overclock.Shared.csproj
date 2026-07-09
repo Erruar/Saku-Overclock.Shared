@@ -6,7 +6,6 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Platforms>x64</Platforms>
         <Nullable>enable</Nullable>
-        <PublishAot>true</PublishAot>
         <IsAotCompatible>true</IsAotCompatible>
         <InvariantGlobalization>true</InvariantGlobalization>
     </PropertyGroup>

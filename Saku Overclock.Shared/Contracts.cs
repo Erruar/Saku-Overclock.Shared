@@ -101,19 +101,57 @@ public struct MemoryConfig
     public MemoryTimings MemoryTimings { get; set; }
 }
 
+public interface ICpuGateService
+{
+    bool IsAvailable { get; }
+    uint PhysicalCores { get; }
+    uint[] CoreDisableMap { get; }
+    uint Cores { get; }
+    string CpuName { get; }
+    bool Smt { get; }
+    CommonMotherBoardInfo MotherBoardInfo { get; }
+    bool Avx512AvailableByCodename { get; }
+    string CpuCodeName { get; }
+    string SmuVersion { get; }
+    uint PowerTableVersion { get; }
+    CodenameGeneration GetCodenameGeneration();
+    MemoryConfig GetMemoryConfig();
+    Task<string> GenerateDebugReportAsync();
+}
+
+public interface IPstateGateService
+{
+    bool IsSupported { get; }
+    Task<IReadOnlyList<PstateOperationResult>> ReadAllPstatesAsync();
+}
+
+public interface IApplyerGateService
+{
+    Task ApplyPreset(Preset preset, bool saveInfo = false);
+    Task<PresetId?> SwitchNextPreset();
+    event Action<List<ApplyResult>>? OnSettingsApplied;
+}
+
+public interface IOcFinderGateService
+{
+    Task<PresetRecommendations> GetPerformanceRecommendationDataAsync();
+    Task<bool> IsUndervoltingAvailableAsync();
+    Task<int> GetCpuPowerAsync();
+}
+
 public enum SmuStatus : byte
 {
-    OK = 0x01,
-    FAILED = 0xFF,
-    UNKNOWN_CMD = 0xFE,
-    CMD_REJECTED_PREREQ = 0xFD,
-    CMD_REJECTED_BUSY = 0xFC,
-    TIMEOUT_MUTEX_LOCK = 0x30,
-    TIMEOUT_MAILBOX_READY = 0x31,
-    TIMEOUT_MAILBOX_MSG_WRITE = 0x32,
-    PCI_FAILED = 0x33,
-    CORE_UNAVAILABLE = 0x34, // Custom status, not Smu, when ZenStates-Core is unavailable
-    CORE_FAILED = 0x35 // Custom status, not Smu, when CpuService raise exception on some command
+    Ok = 0x01,
+    Failed = 0xFF,
+    UnknownCmd = 0xFE,
+    CmdRejectedPrereq = 0xFD,
+    CmdRejectedBusy = 0xFC,
+    TimeoutMutexLock = 0x30,
+    TimeoutMailboxReady = 0x31,
+    TimeoutMailboxMsgWrite = 0x32,
+    PciFailed = 0x33,
+    CoreUnavailable = 0x34, // Custom status, not Smu, when ZenStates-Core is unavailable
+    CoreFailed = 0x35 // Custom status, not Smu, when CpuService raise exception on some command
 }
 
 public record ApplyResult(string ParameterName, bool IsSuccess, SmuStatus SmuStatusCode);
@@ -145,6 +183,11 @@ public record ApplyResult(string ParameterName, bool IsSuccess, SmuStatus SmuSta
 [JsonSerializable(typeof(List<NiIconsElements>))]
 [JsonSerializable(typeof(RtssSettings))]
 [JsonSerializable(typeof(List<Notify>))]
+[JsonSerializable(typeof(HardwareInfoSnapshot))]
+[JsonSerializable(typeof(ApplyPresetRequest))]
+[JsonSerializable(typeof(List<ApplyResult>))]
+[JsonSerializable(typeof(List<PstateOperationResult>))]
+[JsonSerializable(typeof(PresetRecommendations))]
 [JsonSerializable(typeof(float[]))]
 [JsonSerializable(typeof(uint[]))]
 [JsonSerializable(typeof(bool))]
