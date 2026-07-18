@@ -1,4 +1,4 @@
-namespace Saku_Overclock.Contracts.Services;
+namespace Saku_Overclock.Shared.Contracts;
 
 public interface IAppSettingsService
 {
