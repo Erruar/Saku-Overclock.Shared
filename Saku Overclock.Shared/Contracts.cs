@@ -130,6 +130,7 @@ public interface IApplyerGateService
     Task ApplyPreset(Preset preset, bool saveInfo = false);
     Task<PresetId?> SwitchNextPreset();
     event Action<List<ApplyResult>>? OnSettingsApplied;
+    event Action<string>? OnStringSettingsApplied;
 }
 
 public interface IOcFinderGateService
@@ -154,7 +155,8 @@ public enum SmuStatus : byte
     CoreFailed = 0x35 // Custom status, not Smu, when CpuService raise exception on some command
 }
 
-public record ApplyResult(string ParameterName, bool IsSuccess, SmuStatus SmuStatusCode);
+public record ApplyResult(string ParameterName, bool IsSuccess, SmuStatus SmuStatusCode,
+    string[]? AffectedParameters = null);
 
 
 [JsonSourceGenerationOptions(WriteIndented = false, IncludeFields = true)]

@@ -28,7 +28,4 @@ public class Preset
     
     // Frequencies settings
     public PresetFrequenciesSettings FrequenciesSettings { get; } = new();
-    
-    // Override SMU Functions configuration
-    public PresetSmuFeaturesSettings SmuFeaturesSettings { get; } = new();
 }
