@@ -114,6 +114,7 @@ public interface ICpuGateService
     string CpuCodeName { get; }
     string SmuVersion { get; }
     uint PowerTableVersion { get; }
+    uint PowerTableSize { get; }
     CodenameGeneration GetCodenameGeneration();
     MemoryConfig GetMemoryConfig();
     Task<string> GenerateDebugReportAsync();

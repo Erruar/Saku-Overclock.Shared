@@ -65,6 +65,7 @@ public class HardwareInfoSnapshot
     public string CpuCodeName { get; set; } = string.Empty;
     public string SmuVersion { get; set; } = string.Empty;
     public uint PowerTableVersion { get; set; }
+    public uint PowerTableSize { get; set; }
     public CodenameGeneration CodenameGeneration { get; set; }
     public MemoryConfig MemoryConfig { get; set; } 
     public bool PstateSupported { get; set; }
