@@ -64,7 +64,7 @@ public enum CodenameGeneration : byte
 
 public enum MemType
 {
-    Unknown = -1, Ddr4, Ddr5, Lpddr5
+    Unknown = -1, Ddr4, Ddr5, Lpddr5, Lpddr5X
 }
 
 public struct CommonMotherBoardInfo
