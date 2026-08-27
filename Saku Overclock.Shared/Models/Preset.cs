@@ -17,7 +17,7 @@ public class Preset
     public PresetVrmSettings VrmSettings { get; init; } = new();
     
     // iGPU and CPU subsystems configuration
-    public PresetSubsystemsSettings SubsystemsSettings { get; } = new();
+    public PresetSubsystemsSettings SubsystemsSettings { get; init; } = new();
     
     // Advanced options configuration 
     public PresetAdvancedCpuModesSettings CpuModesSettings { get; init; } = new();
@@ -27,5 +27,5 @@ public class Preset
     public PresetCurveOptimizerAdvancedOptions CurveOptimizerAdvancedOptions { get; init; } = new();
     
     // Frequencies settings
-    public PresetFrequenciesSettings FrequenciesSettings { get; } = new();
+    public PresetFrequenciesSettings FrequenciesSettings { get; init; } = new();
 }
