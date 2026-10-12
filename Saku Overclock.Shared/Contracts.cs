@@ -130,6 +130,7 @@ public interface IApplyerGateService
 {
     Task ApplyPreset(Preset preset, bool saveInfo = false);
     Task<PresetId?> SwitchNextPreset();
+    Task<string?> GetAppliedPreset();
     event Action<Preset>? PresetChanged;
     event Action<List<ApplyResult>>? OnSettingsApplied;
     event Action<string>? OnStringSettingsApplied;
