@@ -130,6 +130,7 @@ public interface IApplyerGateService
 {
     Task ApplyPreset(Preset preset, bool saveInfo = false);
     Task<PresetId?> SwitchNextPreset();
+    event Action<Preset>? PresetChanged;
     event Action<List<ApplyResult>>? OnSettingsApplied;
     event Action<string>? OnStringSettingsApplied;
 }
@@ -200,6 +201,7 @@ public record ApplyResult(string ParameterName, bool IsSuccess, SmuStatus SmuSta
 [JsonSerializable(typeof(double))]
 [JsonSerializable(typeof(float))]
 [JsonSerializable(typeof(float?))]
+[JsonSerializable(typeof(string))]
 public partial class IpcJsonContext : JsonSerializerContext
 {
 }
