@@ -162,7 +162,8 @@ public record ApplyResult(string ParameterName, bool IsSuccess, SmuStatus SmuSta
     string[]? AffectedParameters = null);
 
 
-[JsonSourceGenerationOptions(WriteIndented = false, IncludeFields = true)]
+[JsonSourceGenerationOptions(WriteIndented = false, IncludeFields = true,
+    GenerationMode = JsonSourceGenerationMode.Metadata)]
 [JsonSerializable(typeof(IpcMessage))]
 [JsonSerializable(typeof(AppSettings))]
 [JsonSerializable(typeof(Preset))]
@@ -193,16 +194,6 @@ public record ApplyResult(string ParameterName, bool IsSuccess, SmuStatus SmuSta
 [JsonSerializable(typeof(List<ApplyResult>))]
 [JsonSerializable(typeof(List<PstateOperationResult>))]
 [JsonSerializable(typeof(PresetRecommendations))]
-[JsonSerializable(typeof(float[]))]
-[JsonSerializable(typeof(uint[]))]
-[JsonSerializable(typeof(bool))]
-[JsonSerializable(typeof(bool?))]
-[JsonSerializable(typeof(uint))]
-[JsonSerializable(typeof(int))]
-[JsonSerializable(typeof(double))]
-[JsonSerializable(typeof(float))]
-[JsonSerializable(typeof(float?))]
-[JsonSerializable(typeof(string))]
 public partial class IpcJsonContext : JsonSerializerContext
 {
 }
