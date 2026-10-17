@@ -164,4 +164,13 @@ public interface IAppSettingsService
         get;
         set;
     }
+    
+    /// <summary>
+    ///     Enable safeguards flag, check for latest system crash and refuse to apply user preset if was found
+    /// </summary>
+    bool EnableSafeguards
+    {
+        get;
+        set;
+    }
 }

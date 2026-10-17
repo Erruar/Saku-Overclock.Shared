@@ -19,6 +19,6 @@ public class AppSettings
     public bool PremadePresetsAdded { get; set; } = false;
     public string AcPreset { get; set; } = string.Empty;
     public string BatteryPreset { get; set; } = string.Empty;
-    public string RyzenAdjLine { get; set; } = string.Empty;
     public bool AppFirstRun { get; set; } = true;
+    public bool EnableSafeguards { get; set; } = true;
 }
